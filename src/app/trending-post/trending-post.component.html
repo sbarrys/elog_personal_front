@@ -19,12 +19,6 @@
         </a>
       </div>
 
-      <!-- Category -->
-      <a href="#!" class="pink-text">
-        <h6 class="font-weight-bold mb-3">
-          <i class="fas fa-map pr-2"></i>Adventure
-        </h6>
-      </a>
       <!-- Post title -->
       <h4 class="font-weight-bold mb-3">
         <strong>{{ result[key].title }}</strong>
@@ -35,9 +29,14 @@
         {{ result[key].createdTime.slice(0, 10) }}
       </p>
       <!-- Excerpt -->
-      <p class="dark-grey-text">
+      <p class="dark-grey-text" *ngIf="result[key].content.length > 60">
+        {{ result[key].content.slice(0, 60) + "..." }} <button>더보기</button>
+      </p>
+
+      <p class="dark-grey-text" *ngIf="result[key].content.length < 20">
         {{ result[key].content }}
       </p>
+
       <!-- Read more button -->
       <a class="btn btn-pink btn-rounded btn-md">Read more</a>
     </div>
