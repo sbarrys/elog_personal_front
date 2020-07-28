@@ -1,0 +1,69 @@
+<div>
+  <mdb-navbar
+    SideClass="shadow-none navbar navbar-expand-lg navbar-light    lighten-3 white-color"
+    [containerInside]="false"
+  >
+    Navbar brand
+    <mdb-navbar-brand
+      ><a class="navbar-brand" href="#" style="width: 100px;"
+        ><img src="../../assets/index_icon.png" style="width: 100%;" /></a
+    ></mdb-navbar-brand>
+
+    <!--계정-->
+    <ul class="navbar-nav ml-auto nav-flex-icons" style="padding-left: 20px;">
+      <!--검색-->
+      <li>
+        <a
+          class="nav-link"
+          style="padding-top: 10px; padding-right: 5px; width: 50%;"
+        >
+          <div class="btn-group" mdbDropdown>
+            <!-- <mdb-icon fas icon="user"></mdb-icon> -->
+            <img
+              src="../../assets/searchpng.png"
+              mdbDropdownToggle
+              style="width: 30px;"
+            />
+          </div>
+        </a>
+      </li>
+      <!--새글쓰기-->
+
+      <a mdbBtn floating="true" size="lg" mdbWavesEffect (click)="postWrite()">
+        <img
+          src="../../assets/write_btn.png"
+          style="width: 22px; height: 22px; margin-bottom: 6px;"
+        />
+      </a>
+
+      <!--계정-->
+      <li>
+        <a class="nav-link">
+          <div class="btn-group" mdbDropdown>
+            <!-- <mdb-icon fas icon="user"></mdb-icon> -->
+            <img
+              src="../../assets/account_img.png"
+              mdbDropdownToggle
+              style="width: 30px;"
+            />
+
+            <div
+              class="dropdown-menu dropdown-menu-right dropdown-primary"
+              style="margin-top: 15px;"
+            >
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="divider dropdown-divider"></div>
+              <a class="dropdown-item">
+                <mdb-icon fab icon="google" style="padding-right: 10px;">
+                </mdb-icon>
+                Google Login
+              </a>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </mdb-navbar>
+</div>

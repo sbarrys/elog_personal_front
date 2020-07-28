@@ -1,0 +1,65 @@
+<div id="select-btn">
+  <button
+    *ngIf="nowuri == '/'"
+    mdbBtn
+    type="button"
+    color="#000"
+    class="waves-light shadow-none"
+    mdbWavesEffect
+    style="font-weight: 600; padding-right: 10px;"
+  >
+    <img
+      src="../../assets/trending_now_btn.png"
+      style="height: 25px; width: 25px; margin-right: 10px;"
+    />
+    트랜딩
+  </button>
+  <button
+    *ngIf="nowuri == '/recent'"
+    mdbBtn
+    type="button"
+    color="#000"
+    class="waves-light shadow-none"
+    mdbWavesEffect
+    (click)="btnClick_trending()"
+    style="padding-right: 5px;"
+  >
+    <img
+      src="../../assets/trending_btn.png"
+      style="height: 20px; width: 20px; margin-right: 10px;"
+    />
+    트랜딩
+  </button>
+
+  <button
+    *ngIf="nowuri == '/recent'"
+    mdbBtn
+    type="button"
+    color="#000"
+    class="waves-light shadow-none"
+    mdbWavesEffect
+    style="font-weight: 600; padding-left: 10px;"
+  >
+    <img
+      src="../../assets/recent_now_btn.png"
+      style="height: 28px; width: 28px; margin-right: 10px;"
+    />
+    최신
+  </button>
+  <button
+    *ngIf="nowuri == '/'"
+    mdbBtn
+    type="button"
+    color="#000"
+    class="waves-light shadow-none"
+    mdbWavesEffect
+    (click)="btnClick_recent()"
+    style="padding-left: 0px;"
+  >
+    <img
+      src="../../assets/recent_btn.png"
+      style="height: 20px; width: 20px; margin-right: 10px;"
+    />
+    최신
+  </button>
+</div>

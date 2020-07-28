@@ -1,0 +1,45 @@
+<base href="" />
+<div class="container" style="width: 75%; margin: auto 0;">
+  <div id="nav-bar">
+    <app-nav></app-nav>
+    <app-select-sort-by></app-select-sort-by>
+  </div>
+  <div class="row">
+    <!-- Grid column -->
+    <div class="col-lg-4 col-md-6 mb-lg-0 mb-4" *ngFor="let key of keys">
+      <!-- Featured image -->
+      <div class="view overlay rounded z-depth-2 mb-4">
+        <img
+          class="img-fluid"
+          src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
+          alt="Sample image"
+        />
+        <a>
+          <div class="mask rgba-white-slight"></div>
+        </a>
+      </div>
+
+      <!-- Category -->
+      <a href="#!" class="pink-text">
+        <h6 class="font-weight-bold mb-3">
+          <i class="fas fa-map pr-2"></i>Adventure
+        </h6>
+      </a>
+      <!-- Post title -->
+      <h4 class="font-weight-bold mb-3">
+        <strong>{{ result[key].title }}</strong>
+      </h4>
+      <!-- Post data -->
+      <p>
+        by <a class="font-weight-bold"> {{ result[key].user.name }} </a>,
+        {{ result[key].createdTime.slice(0, 10) }}
+      </p>
+      <!-- Excerpt -->
+      <p class="dark-grey-text">
+        {{ result[key].content }}
+      </p>
+      <!-- Read more button -->
+      <a class="btn btn-pink btn-rounded btn-md">Read more</a>
+    </div>
+  </div>
+</div>
