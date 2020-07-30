@@ -15,9 +15,8 @@ const AUTHORIZE_URI = 'https://accounts.google.com/o/oauth2/v2/auth';
 })
 export class NavComponent implements OnInit {
   loggedin: boolean = false;
-  ////////////////
-  queryStr;
-  loginUrl;
+  queryStr: string;
+  loginUrl: string;
   initQueryStr() {
     this.queryStr = stringify({
       response_type: 'token',
@@ -27,7 +26,6 @@ export class NavComponent implements OnInit {
     });
     this.loginUrl = AUTHORIZE_URI + '?' + this.queryStr;
   }
-  ////////////////
   initLoggedin() {
     if (window.sessionStorage.getItem('access_token')) {
       this.loggedin = true;

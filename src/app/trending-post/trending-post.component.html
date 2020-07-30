@@ -1,44 +1,54 @@
 <base href="" />
-<div class="container" style="width: 75%; margin: auto 0;">
+<div class="container" style="width: 100%; margin: auto 0;">
   <div id="nav-bar">
     <app-nav></app-nav>
     <app-select-sort-by></app-select-sort-by>
   </div>
-  <div class="row">
-    <!-- Grid column -->
-    <div class="col-lg-4 col-md-6 mb-lg-0 mb-4" *ngFor="let key of keys">
-      <!-- Featured image -->
-      <div class="view overlay rounded z-depth-2 mb-4">
-        <img
-          class="img-fluid"
-          src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
-          alt="Sample image"
-        />
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
+  <div style="display: flex;">
+    <div style="flex: 4;" class="row">
+      <!-- Grid column -->
+      <div class="col-lg-4 col-md-6 mb-lg-0 mb-4" *ngFor="let key of keys">
+        <!-- Featured image -->
+        <div class="view overlay rounded z-depth-2 mb-4">
+          <img
+            class="img-fluid"
+            src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
+            alt="Sample image"
+          />
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <!-- Post title -->
+        <h4 class="font-weight-bold mb-3">
+          <strong>{{ result[key].title }}</strong>
+        </h4>
+        <!-- Post data -->
+        <p>
+          by <a class="font-weight-bold"> {{ result[key].user.name }} </a>,
+          {{ result[key].createdTime.slice(0, 10) }}
+        </p>
+        <!-- Excerpt -->
+        <p class="dark-grey-text" *ngIf="result[key].content.length > 60">
+          {{ result[key].content.slice(0, 60) + "..." }} <button>더보기</button>
+        </p>
+
+        <p class="dark-grey-text" *ngIf="result[key].content.length < 20">
+          {{ result[key].content }}
+        </p>
+
+        <!-- Read more button -->
+        <a class="btn btn-pink btn-rounded btn-md">Read more</a>
       </div>
-
-      <!-- Post title -->
-      <h4 class="font-weight-bold mb-3">
-        <strong>{{ result[key].title }}</strong>
-      </h4>
-      <!-- Post data -->
-      <p>
-        by <a class="font-weight-bold"> {{ result[key].user.name }} </a>,
-        {{ result[key].createdTime.slice(0, 10) }}
-      </p>
-      <!-- Excerpt -->
-      <p class="dark-grey-text" *ngIf="result[key].content.length > 60">
-        {{ result[key].content.slice(0, 60) + "..." }} <button>더보기</button>
-      </p>
-
-      <p class="dark-grey-text" *ngIf="result[key].content.length < 20">
-        {{ result[key].content }}
-      </p>
-
-      <!-- Read more button -->
-      <a class="btn btn-pink btn-rounded btn-md">Read more</a>
+    </div>
+    <div style="flex: 1;">
+      <div style="width: 90%; margin: auto;">
+        <textarea>
+공지사항
+          1. 수식입력 및 외부 서비스 개체 삽입 기능 업데이트
+        </textarea>
+      </div>
     </div>
   </div>
 </div>

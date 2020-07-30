@@ -14,7 +14,7 @@
       <!--검색-->
       <li>
         <a
-          class="nav-link"
+          class="nav-link bottons"
           style="padding-top: 10px; padding-right: 5px; width: 50%;"
         >
           <div class="btn-group" mdbDropdown>
@@ -29,7 +29,15 @@
       </li>
       <!--새글쓰기-->
 
-      <a mdbBtn floating="true" size="lg" mdbWavesEffect (click)="postWrite()">
+      <a
+        class="bottons"
+        mdbBtn
+        floating="true"
+        *ngIf="loggedin"
+        size="lg"
+        mdbWavesEffect
+        (click)="postWrite()"
+      >
         <img
           src="../../assets/write_btn.png"
           style="width: 22px; height: 22px; margin-bottom: 6px;"
@@ -38,7 +46,7 @@
 
       <!--계정-->
       <li>
-        <a class="nav-link">
+        <a class="nav-link bottons">
           <div class="btn-group" mdbDropdown>
             <!-- <mdb-icon fas icon="user"></mdb-icon> -->
             <img
