@@ -33,6 +33,10 @@ export class NavComponent implements OnInit {
       this.loggedin = false;
     }
   }
+  getUserInfo() {
+    //Todo
+  }
+
   constructor(
     private location: Location,
     private router: Router,
