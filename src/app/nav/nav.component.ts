@@ -15,6 +15,7 @@ const AUTHORIZE_URI = 'https://accounts.google.com/o/oauth2/v2/auth';
 })
 export class NavComponent implements OnInit {
   loggedin: boolean = false;
+  // 로그인 구현 //
   queryStr: string;
   loginUrl: string;
   initQueryStr() {
@@ -26,6 +27,8 @@ export class NavComponent implements OnInit {
     });
     this.loginUrl = AUTHORIZE_URI + '?' + this.queryStr;
   }
+  ////////////////
+
   initLoggedin() {
     if (window.sessionStorage.getItem('access_token')) {
       this.loggedin = true;
