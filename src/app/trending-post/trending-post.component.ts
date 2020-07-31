@@ -16,7 +16,6 @@ export class TrendingPostComponent implements OnInit {
     this.postService.getAll().subscribe((result: any) => {
       this.result = result;
       this.keys = Object.keys(result);
-      console.log(result[1]);
     });
   }
 
