@@ -61,7 +61,7 @@ export class NavComponent implements OnInit {
     this.location.forward();
   }
   postWrite() {
-    this.router.navigate(['/postWrite', this.userInfo.email]);
+    this.router.navigate([`/postWrite/${this.userInfo.email}`]);
   }
 
   logOut() {

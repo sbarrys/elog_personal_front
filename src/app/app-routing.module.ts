@@ -7,7 +7,7 @@ import { PostWriteComponent } from './post-write/post-write.component';
 const routes: Routes = [
   { path: '', component: TrendingPostComponent },
   { path: 'recent', component: RecentPostComponent },
-  { path: 'postWrite/:userinfo', component: PostWriteComponent },
+  { path: 'postWrite/:email', component: PostWriteComponent },
 ];
 
 @NgModule({

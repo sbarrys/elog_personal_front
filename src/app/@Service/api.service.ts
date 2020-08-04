@@ -23,6 +23,6 @@ export class ApiService {
     return `${BASE_URL}/${path}`;
   }
   post(path: string, httpOptions: any): Observable<any> {
-    return this.httpClient.get(this.getUrl(path), httpOptions);
+    return this.httpClient.post(this.getUrl(path), httpOptions);
   }
 }

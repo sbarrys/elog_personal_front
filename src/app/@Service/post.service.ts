@@ -34,11 +34,11 @@ export class PostService {
   }
 
   postPost(post: Post): Observable<Post> {
-    let today: number = Date.now();
-
     const params: any = {
       post,
     };
+    console.log(params.post);
+
     return this.api.post(BASE_PATH, params);
   }
 }

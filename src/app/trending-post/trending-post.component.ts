@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../@Service/post.service';
 import { Post } from '../@Model/post.model';
-import { from } from 'rxjs';
 @Component({
   selector: 'app-trending-post',
   templateUrl: './trending-post.component.html',

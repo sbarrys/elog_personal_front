@@ -3,6 +3,8 @@ import Editor from '@toast-ui/editor';
 import { Location } from '@angular/common';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import { PostService } from '../@Service/post.service';
+import { Post } from '../@Model/post.model';
 import { ActivatedRoute } from '@angular/router';
 
 let editor: Editor;
@@ -12,12 +14,13 @@ let editor: Editor;
   styleUrls: ['./post-write.component.css'],
 })
 export class PostWriteComponent implements OnInit {
-  htmlData;
-
-  constructor(private location: Location, private route: ActivatedRoute) {
-    this.userInfo = route.snapshot.params['userinfo'];
-  }
-  private userInfo;
+  constructor(
+    private location: Location,
+    private postService: PostService,
+    private route: ActivatedRoute
+  ) {}
+  title: string;
+  private email: string;
   set() {
     editor = new Editor({
       el: document.querySelector('#editor'),
@@ -25,16 +28,20 @@ export class PostWriteComponent implements OnInit {
       initialEditType: 'markdown',
       previewStyle: 'vertical',
       plugins: [colorSyntax],
+      placeholder: 'Please enter text.',
     });
   }
 
   postPost() {
+    let post = new Post();
+    post.title = this.title; //2. 타이틀 양방향 바인딩 왜안되지
+    post.writer = this.email;
+    post.content = editor.getMarkdown();
+    console.log(post);
+
+    // post.writer= this.  //1. 라우팅 파라미터 가져오는거하기.
+    this.postService.postPost(post);
     /* 디비에 등록해주는 절차를 거친다.*/
-    this.htmlData = editor.getHtml();
-    console.log(editor.getHtml());
-    document
-      .querySelector('#viewer')
-      .insertAdjacentHTML('beforeend', this.htmlData); //이것을 통해 본다면 그냥 getHtml 해서 db에 저장하면 출력이 잘안될것... toast 용 viewr 가 잇을텐데..
   }
 
   goBack() {
@@ -43,5 +50,7 @@ export class PostWriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.set();
+    const params = this.route.snapshot.params;
+    this.email = params.email;
   }
 }
