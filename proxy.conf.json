@@ -1,0 +1,9 @@
+{
+  "/auth/*": {
+    "target": "http://localhost:8080",
+    "pathRewrite": { "^/auth": "/auth" },
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

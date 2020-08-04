@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   SERVER_API_URL: 'http://localhost:8080/api',
-  SERVER_AUTH_URL: 'http://localhost:8080/auth',
+  SERVER_AUTH_URL: 'https://localhost:4200/auth',
 };
 
 /*

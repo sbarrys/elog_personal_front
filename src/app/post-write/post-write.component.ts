@@ -3,6 +3,7 @@ import Editor from '@toast-ui/editor';
 import { Location } from '@angular/common';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
+import { ActivatedRoute } from '@angular/router';
 
 let editor: Editor;
 @Component({
@@ -13,7 +14,10 @@ let editor: Editor;
 export class PostWriteComponent implements OnInit {
   htmlData;
 
-  constructor(private location: Location) {}
+  constructor(private location: Location, private route: ActivatedRoute) {
+    this.userInfo = route.snapshot.params['userinfo'];
+  }
+  private userInfo;
   set() {
     editor = new Editor({
       el: document.querySelector('#editor'),
@@ -23,6 +27,7 @@ export class PostWriteComponent implements OnInit {
       plugins: [colorSyntax],
     });
   }
+
   postPost() {
     /* 디비에 등록해주는 절차를 거친다.*/
     this.htmlData = editor.getHtml();

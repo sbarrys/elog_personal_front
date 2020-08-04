@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable, throwError } from 'rxjs';
+import { Post } from '../@Model/post.model';
 import {
   HttpClient,
   HttpHeaders,
@@ -30,5 +31,14 @@ export class PostService {
       id,
     };
     return this.api.get(BASE_PATH, params);
+  }
+
+  postPost(post: Post): Observable<Post> {
+    let today: number = Date.now();
+
+    const params: any = {
+      post,
+    };
+    return this.api.post(BASE_PATH, params);
   }
 }

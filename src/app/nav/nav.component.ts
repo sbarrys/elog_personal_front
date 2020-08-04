@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../@Service/auth.service';
-import { Observable } from 'rxjs';
-import { stringify, parse } from 'qs';
+import { stringify } from 'qs';
 const CLIENT_ID =
   '448516851590-qda48s4prk42bi65a3p1bgl86km2sl9s.apps.googleusercontent.com';
 const AUTHORIZE_URI = 'https://accounts.google.com/o/oauth2/v2/auth';
@@ -19,18 +18,20 @@ export class NavComponent implements OnInit {
     private router: Router,
     private authService: AuthService
   ) {}
-  access_token: string;
+  private access_token: string;
   loggedin: boolean = false;
-  userInfo: any;
+  private userInfo: any;
   // 로그인 구현 //
   queryStr: string;
   loginUrl: string;
+
   initQueryStr() {
     this.queryStr = stringify({
       response_type: 'token',
       client_id: CLIENT_ID,
       redirect_uri: window.location.href,
-      scope: 'https://www.googleapis.com/auth/userinfo.profile',
+      scope:
+        'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email ',
     });
     this.loginUrl = AUTHORIZE_URI + '?' + this.queryStr;
   }
@@ -38,37 +39,36 @@ export class NavComponent implements OnInit {
   initLoggedin() {
     if (window.sessionStorage.getItem('access_token')) {
       this.loggedin = true;
-      this.getUserInfo(window.sessionStorage.getItem('access_token'));
+      this.saveOrUpdateUser(window.sessionStorage.getItem('access_token'));
     } else {
       this.loggedin = false;
     }
   }
 
-  //로그인 상태일때 유저정보 받아서 데이터에 담아놓기. (화면과 바인딩시킬예정)
-  getUserInfo(access_token: string) {
-    this.authService.getUserInfo(access_token).subscribe((result) => {
-      this.userInfo = result.data;
-      console.log(result.user_id); //백엔드에 access_token보내면 백엔드는 sns 로부터 유저정보를 받고 DB에 저장하고 프론트로 보내줄것이다.
-    });
-
-    ////////
+  saveOrUpdateUser(access_token: string) {
+    this.authService.saveOrUpdateUser(access_token).subscribe(
+      (result) => {
+        this.userInfo = result;
+        this.loggedin = true;
+      },
+      (err) => {
+        this.logOut();
+      }
+    );
   }
 
   goForward() {
     this.location.forward();
   }
   postWrite() {
-    this.router.navigateByUrl('/postWrite');
+    this.router.navigate(['/postWrite', this.userInfo.email]);
   }
-  // accesstoken무효화 / 세션비우기 /
+
   logOut() {
     this.authService.logout(window.sessionStorage.getItem('access_token'));
     window.sessionStorage.removeItem('access_token');
     this.loggedin = false;
     this.initQueryStr();
-  }
-  ngOnDestory(): void {
-    window.sessionStorage.clear();
   }
 
   ngOnInit(): void {
@@ -82,10 +82,13 @@ export class NavComponent implements OnInit {
       );
 
       window.sessionStorage.setItem('access_token', this.access_token);
-      this.loggedin = true;
       window.location.hash = '';
     }
     this.initLoggedin();
+  }
+
+  ngOnDestory(): void {
+    window.sessionStorage.clear();
   }
 }
 
