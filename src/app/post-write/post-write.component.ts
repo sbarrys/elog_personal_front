@@ -6,7 +6,6 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { PostService } from '../@Service/post.service';
 import { Post } from '../@Model/post.model';
 import { ActivatedRoute } from '@angular/router';
-
 let editor: Editor;
 @Component({
   selector: 'app-post-write',
@@ -19,7 +18,7 @@ export class PostWriteComponent implements OnInit {
     private postService: PostService,
     private route: ActivatedRoute
   ) {}
-  title: string;
+  title: any = 'asdf';
   private email: string;
   set() {
     editor = new Editor({
