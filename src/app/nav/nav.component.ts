@@ -91,8 +91,3 @@ export class NavComponent implements OnInit {
     window.sessionStorage.clear();
   }
 }
-
-// 프론트엔드에서  게시글 등 들어갈떄 accesstoken 없다면 아래처럼 로그인으로 연결시켜주자.
-// if (!access_token) {
-//   window.location.assign(loginUrl);
-//   return null;

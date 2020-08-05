@@ -38,8 +38,6 @@ export class AuthService {
       }),
     };
 
-    console.log(access_tokenn);
-
     return this.http.get(this.getUrl('saveOrUpdateUser'), httpOptions);
   }
   getUrl(path: string) {

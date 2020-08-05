@@ -18,7 +18,7 @@ export class PostWriteComponent implements OnInit {
     private postService: PostService,
     private route: ActivatedRoute
   ) {}
-  title: any = 'asdf';
+  title: any = '';
   private email: string;
   set() {
     editor = new Editor({
@@ -36,10 +36,11 @@ export class PostWriteComponent implements OnInit {
     post.title = this.title; //2. 타이틀 양방향 바인딩 왜안되지
     post.writer = this.email;
     post.content = editor.getMarkdown();
-    console.log(post);
 
     // post.writer= this.  //1. 라우팅 파라미터 가져오는거하기.
-    this.postService.postPost(post);
+    this.postService.postPost(post).subscribe((result) => {
+      console.log('ㅁ');
+    });
     /* 디비에 등록해주는 절차를 거친다.*/
   }
 

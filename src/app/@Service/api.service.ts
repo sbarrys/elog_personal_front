@@ -14,15 +14,19 @@ const BASE_URL = env.SERVER_API_URL;
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private http: HttpClient) {}
 
   get(path: string, httpOptions: any): Observable<any> {
-    return this.httpClient.get(this.getUrl(path), httpOptions);
+    return this.http.get(this.getUrl(path), httpOptions);
   }
   getUrl(path: string) {
     return `${BASE_URL}/${path}`;
   }
-  post(path: string, httpOptions: any): Observable<any> {
-    return this.httpClient.post(this.getUrl(path), httpOptions);
+  post(path: string, params: any): Observable<any> {
+    const config = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    };
+
+    return this.http.post(this.getUrl(path), params, config);
   }
 }

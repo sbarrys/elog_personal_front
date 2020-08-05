@@ -34,11 +34,12 @@ export class PostService {
   }
 
   postPost(post: Post): Observable<Post> {
-    const params: any = {
-      post,
+    const data = {
+      writer: post.writer,
+      content: post.content,
+      title: post.title,
     };
-    console.log(params.post);
 
-    return this.api.post(BASE_PATH, params);
+    return this.api.post(BASE_PATH, data);
   }
 }
