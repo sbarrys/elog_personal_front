@@ -18,6 +18,7 @@ export class NavComponent implements OnInit {
     private router: Router,
     private authService: AuthService
   ) {}
+  private userEmail: string;
   private access_token: string;
   loggedin: boolean = false;
   private userInfo: any;
@@ -57,6 +58,10 @@ export class NavComponent implements OnInit {
     );
   }
 
+  userNameByEmailFunc(email: string) {
+    let idx = email.indexOf('@');
+    return email.substr(0, idx);
+  }
   goForward() {
     this.location.forward();
   }

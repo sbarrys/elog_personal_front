@@ -12,7 +12,7 @@
         <div class="view overlay rounded z-depth-2 mb-4">
           <img
             class="img-fluid"
-            src="https://mdbootstrap.com/img/Photos/Others/images/81.jpg"
+            src="{{ result[key].user.picture }}"
             alt="Sample image"
           />
           <a>
@@ -26,7 +26,10 @@
         </h4>
         <!-- Post data -->
         <p>
-          by <a class="font-weight-bold"> {{ result[key].user.name }} </a>,
+          by
+          <a class="font-weight-bold">
+            {{ userNameByEmailFunc(result[key].user.email) }} </a
+          >,
           {{ result[key].createdTime.slice(0, 10) }}
         </p>
         <!-- Excerpt -->
@@ -39,7 +42,11 @@
         </p>
 
         <!-- Read more button -->
-        <a class="btn btn-pink btn-rounded btn-md">Read more</a>
+        <a
+          class="btn btn-pink btn-rounded btn-md"
+          (click)="postDetail(result[key].id)"
+          >Read more</a
+        >
       </div>
     </div>
     <div style="flex: 1;">

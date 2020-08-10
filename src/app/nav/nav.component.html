@@ -59,8 +59,8 @@
               class="dropdown-menu dropdown-menu-right dropdown-primary"
               style="margin-top: 15px;"
             >
-              <a class="dropdown-item" href="#" *ngIf="loggedin"
-                >{{ userInfo.name }} 님</a
+              <a class="dropdown-item" href="#" *ngIf="loggedin">
+                {{ userNameByEmailFunc(userInfo.email) }} 님</a
               >
               <a class="dropdown-item" href="#">마이페이지</a>
               <a class="dropdown-item" href="#">내 게시글</a>

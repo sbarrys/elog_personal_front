@@ -27,10 +27,7 @@ export class PostService {
     return this.api.get(BASE_PATH, httpOptions);
   }
   get(id): Observable<any> {
-    const params: any = {
-      id,
-    };
-    return this.api.get(BASE_PATH, params);
+    return this.api.getById(BASE_PATH + '/' + id);
   }
 
   postPost(post: Post): Observable<Post> {
@@ -39,7 +36,6 @@ export class PostService {
       content: post.content,
       title: post.title,
     };
-
     return this.api.post(BASE_PATH, data);
   }
 }

@@ -19,6 +19,9 @@ export class ApiService {
   get(path: string, httpOptions: any): Observable<any> {
     return this.http.get(this.getUrl(path), httpOptions);
   }
+  getById(path: string): Observable<any> {
+    return this.http.get(this.getUrl(path));
+  }
   getUrl(path: string) {
     return `${BASE_URL}/${path}`;
   }

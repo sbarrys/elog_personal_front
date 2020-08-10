@@ -5,7 +5,7 @@ import 'tui-color-picker/dist/tui-color-picker.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import { PostService } from '../@Service/post.service';
 import { Post } from '../@Model/post.model';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 let editor: Editor;
 @Component({
   selector: 'app-post-write',
@@ -16,7 +16,8 @@ export class PostWriteComponent implements OnInit {
   constructor(
     private location: Location,
     private postService: PostService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   title: any = '';
   private email: string;
@@ -30,17 +31,28 @@ export class PostWriteComponent implements OnInit {
       placeholder: 'Please enter text.',
     });
   }
+  checknull(): boolean {
+    if (this.title == '' || this.email == '') {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   postPost() {
-    let post = new Post();
-    post.title = this.title; //2. 타이틀 양방향 바인딩 왜안되지
-    post.writer = this.email;
-    post.content = editor.getMarkdown();
+    if (this.checknull() == true) {
+      alert(' 빈칸이 있습니다.');
+    } else {
+      let post = new Post();
+      post.title = this.title; //2. 타이틀 양방향 바인딩 왜안되지
+      post.writer = this.email;
+      post.content = editor.getMarkdown();
 
-    // post.writer= this.  //1. 라우팅 파라미터 가져오는거하기.
-    this.postService.postPost(post).subscribe((result) => {
-      console.log('ㅁ');
-    });
+      // post.writer= this.  //1. 라우팅 파라미터 가져오는거하기.
+      this.postService.postPost(post).subscribe((result) => {
+        this.router.navigate([`/`]);
+      });
+    }
     /* 디비에 등록해주는 절차를 거친다.*/
   }
 
@@ -50,7 +62,6 @@ export class PostWriteComponent implements OnInit {
 
   ngOnInit(): void {
     this.set();
-    const params = this.route.snapshot.params;
-    this.email = params.email;
+    this.email = this.route.snapshot.params.email;
   }
 }

@@ -1,0 +1,25 @@
+<head>
+  <link
+    rel="stylesheet"
+    href="https://uicdn.toast.com/editor/latest/toastui-editor-viewer.min.css"
+  />
+</head>
+
+<body>
+  <div id="nav-bar">
+    <app-nav></app-nav>
+  </div>
+
+  <div>
+    <div style="width: 80%; margin: auto;">
+      <h2>제목 : {{ post.title }}</h2>
+      <br />
+      <p>작성자 : {{ post.writer }}</p>
+      <br />
+      <h4>내용</h4>
+      <div style="border: solid 1px;">
+        <div id="viewer"></div>
+      </div>
+    </div>
+  </div>
+</body>
