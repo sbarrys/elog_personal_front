@@ -14,12 +14,39 @@
     <div style="width: 80%; margin: auto;">
       <h2>제목 : {{ post.title }}</h2>
       <br />
-      <p>작성자 : {{ post.writer }}</p>
+
+      <p>작성자 : {{ userNameByEmailFunc(post.writer) }}</p>
       <br />
       <h4>내용</h4>
       <div style="border: solid 1px;">
         <div id="viewer"></div>
       </div>
+      <button
+        type="button"
+        mdbBtn
+        mdbWavesEffect
+        class="#eeeeee grey lighten-5"
+        (click)="goBack()"
+        style="margin-top: 20px; float: left;"
+      >
+        나가기
+      </button>
+      <span>
+        <button
+          type="button"
+          class="btn btn-light"
+          style="margin-top: 20px; float: right;"
+        >
+          수 정
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          style="margin-top: 20px; float: right;"
+        >
+          삭 제
+        </button></span
+      >
     </div>
   </div>
 </body>

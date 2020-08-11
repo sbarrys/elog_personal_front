@@ -4,14 +4,19 @@
     <app-nav></app-nav>
     <app-select-sort-by></app-select-sort-by>
   </div>
-  <div style="display: flex;">
-    <div style="flex: 4;" class="row">
+  <div style="display: flex; background-color: rgb(246, 244, 244);">
+    <div style="flex: 4; margin-left: 20px;" class="row">
       <!-- Grid column -->
-      <div class="col-lg-4 col-md-6 mb-lg-0 mb-4" *ngFor="let key of keys">
+      <div
+        class="col-lg-3 col-md-5 mb-lg-0 mb-4 shadow-none"
+        style="background-color: white; margin-left: 10px; margin-top: 10px;"
+        *ngFor="let key of keys"
+      >
         <!-- Featured image -->
         <div class="view overlay rounded z-depth-2 mb-4">
           <img
-            class="img-fluid"
+            *ngIf="isPicture(result[key].user.picture)"
+            class="img-fluid shadow-none"
             src="{{ result[key].user.picture }}"
             alt="Sample image"
           />

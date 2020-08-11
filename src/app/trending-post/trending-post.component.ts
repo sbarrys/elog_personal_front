@@ -18,6 +18,9 @@ export class TrendingPostComponent implements OnInit {
       this.keys = Object.keys(result);
     });
   }
+  isPicture(picture: string): boolean {
+    return picture.length > 1;
+  }
   userNameByEmailFunc(email: string) {
     let idx = email.indexOf('@');
     return email.substr(0, idx);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../@Service/auth.service';
@@ -51,6 +51,7 @@ export class NavComponent implements OnInit {
       (result) => {
         this.userInfo = result;
         this.loggedin = true;
+        this.passUserInfo(result);
       },
       (err) => {
         this.logOut();

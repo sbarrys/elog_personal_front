@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import Viewer from '@toast-ui/editor/dist/toastui-editor-viewer';
 import { PostService } from '../@Service/post.service';
 import { Post } from '../@Model/post.model';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 let viewer: Viewer;
 
@@ -15,6 +16,8 @@ export class PostDetailComponent implements OnInit {
   post: Post;
   private id: number;
   constructor(
+    private location: Location,
+
     private postService: PostService,
     private route: ActivatedRoute
   ) {}
@@ -28,6 +31,14 @@ export class PostDetailComponent implements OnInit {
   getPost() {
     return this.post;
   }
+  userNameByEmailFunc(email: string) {
+    let idx = email.indexOf('@');
+    return email.substr(0, idx);
+  }
+  goBack() {
+    this.location.back();
+  }
+
   set() {
     viewer = new Viewer({
       el: document.querySelector('#viewer'),
