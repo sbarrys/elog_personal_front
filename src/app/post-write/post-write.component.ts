@@ -20,6 +20,7 @@ export class PostWriteComponent implements OnInit {
     private router: Router
   ) {}
   title: any = '';
+  post: Post;
   private email: string;
   set() {
     editor = new Editor({

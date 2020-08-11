@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Post } from '../@Model/post.model';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-  HttpProgressEvent,
-} from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 const BASE_PATH = 'boards';
 const httpOptions = {
@@ -37,5 +32,8 @@ export class PostService {
       title: post.title,
     };
     return this.api.post(BASE_PATH, data);
+  }
+  postDelete(id: number) {
+    return this.api.delete(BASE_PATH + '/' + id);
   }
 }

@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-  HttpProgressEvent,
-} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment as env } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
@@ -31,5 +26,9 @@ export class ApiService {
     };
 
     return this.http.post(this.getUrl(path), params, config);
+  }
+  delete(path: string): Observable<Object> {
+    console.log(this.getUrl(path));
+    return this.http.delete(this.getUrl(path));
   }
 }

@@ -4,6 +4,7 @@ import { PostService } from '../@Service/post.service';
 import { Post } from '../@Model/post.model';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 let viewer: Viewer;
 
@@ -17,7 +18,7 @@ export class PostDetailComponent implements OnInit {
   private id: number;
   constructor(
     private location: Location,
-
+    private router: Router,
     private postService: PostService,
     private route: ActivatedRoute
   ) {}
@@ -53,5 +54,10 @@ export class PostDetailComponent implements OnInit {
     this.id = this.route.snapshot.params.id;
     this.get(this.id);
     this.isWriter();
+  }
+  postDelete(id: number) {
+    this.postService
+      .postDelete(id)
+      .subscribe((ok) => this.router.navigate([`/`]));
   }
 }
