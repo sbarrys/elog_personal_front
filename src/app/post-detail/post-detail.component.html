@@ -33,6 +33,7 @@
       </button>
       <span>
         <button
+          *ngIf="isWriter()"
           type="button"
           class="btn btn-light"
           style="margin-top: 20px; float: right;"
@@ -40,6 +41,7 @@
           수 정
         </button>
         <button
+          *ngIf="isWriter()"
           type="button"
           class="btn btn-warning"
           style="margin-top: 20px; float: right;"

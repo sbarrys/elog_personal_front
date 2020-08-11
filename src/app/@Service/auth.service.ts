@@ -22,7 +22,6 @@ export class AuthService {
       }),
     };
     httpOptions.headers.set('access_token', 'Bearer ' + access_token);
-    console.log(access_token);
     return this.http.get(
       `https://www.googleapis.com/oauth2/v3/userinfo`,
       httpOptions

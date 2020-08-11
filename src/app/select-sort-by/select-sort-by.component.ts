@@ -16,7 +16,5 @@ export class SelectSortByComponent implements OnInit {
   btnClick_recent = function () {
     this.router.navigateByUrl('/recent');
   };
-  ngOnInit(): void {
-    console.log(this.nowuri);
-  }
+  ngOnInit(): void {}
 }

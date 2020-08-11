@@ -31,6 +31,9 @@ export class PostDetailComponent implements OnInit {
   getPost() {
     return this.post;
   }
+  isWriter(): boolean {
+    return this.post.writer == window.sessionStorage.getItem('email');
+  }
   userNameByEmailFunc(email: string) {
     let idx = email.indexOf('@');
     return email.substr(0, idx);
@@ -44,11 +47,11 @@ export class PostDetailComponent implements OnInit {
       el: document.querySelector('#viewer'),
       initialValue: this.post.content,
     });
-    console.log(this.post);
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     this.get(this.id);
+    this.isWriter();
   }
 }

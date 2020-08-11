@@ -30,7 +30,7 @@ export class NavComponent implements OnInit {
     this.queryStr = stringify({
       response_type: 'token',
       client_id: CLIENT_ID,
-      redirect_uri: window.location.href,
+      redirect_uri: 'https://localhost:4200/',
       scope:
         'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email ',
     });
@@ -50,8 +50,9 @@ export class NavComponent implements OnInit {
     this.authService.saveOrUpdateUser(access_token).subscribe(
       (result) => {
         this.userInfo = result;
+        window.sessionStorage.setItem('email', this.userInfo.email);
+
         this.loggedin = true;
-        this.passUserInfo(result);
       },
       (err) => {
         this.logOut();
@@ -71,8 +72,10 @@ export class NavComponent implements OnInit {
   }
 
   logOut() {
+    this.userInfo = null;
     this.authService.logout(window.sessionStorage.getItem('access_token'));
     window.sessionStorage.removeItem('access_token');
+    window.sessionStorage.removeItem('email');
     this.loggedin = false;
     this.initQueryStr();
   }
