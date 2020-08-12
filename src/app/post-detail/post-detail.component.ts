@@ -60,4 +60,7 @@ export class PostDetailComponent implements OnInit {
       .postDelete(id)
       .subscribe((ok) => this.router.navigate([`/`]));
   }
+  postUpdate(id: number) {
+    this.router.navigate([`/postUpdate/${id}`]);
+  }
 }

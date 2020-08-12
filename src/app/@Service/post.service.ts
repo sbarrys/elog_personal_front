@@ -21,10 +21,17 @@ export class PostService {
   getAll(): Observable<any> {
     return this.api.get(BASE_PATH, httpOptions);
   }
-  get(id): Observable<any> {
+  get(id: number): Observable<any> {
     return this.api.getById(BASE_PATH + '/' + id);
   }
-
+  updatePost(post: Post, id: number): Observable<Post> {
+    const data = {
+      writer: post.writer,
+      content: post.content,
+      title: post.title,
+    };
+    return this.api.update(BASE_PATH + '/' + id, data);
+  }
   postPost(post: Post): Observable<Post> {
     const data = {
       writer: post.writer,

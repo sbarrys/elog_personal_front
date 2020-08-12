@@ -15,6 +15,7 @@ import { RecentPostComponent } from './recent-post/recent-post.component';
 import { RouterModule } from '@angular/router';
 import { PostWriteComponent } from './post-write/post-write.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { PostUpdateComponent } from './post-update/post-update.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { PostDetailComponent } from './post-detail/post-detail.component';
     RecentPostComponent,
     PostWriteComponent,
     PostDetailComponent,
+    PostUpdateComponent,
   ],
   imports: [
     HttpClientModule,

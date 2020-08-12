@@ -27,6 +27,15 @@ export class ApiService {
 
     return this.http.post(this.getUrl(path), params, config);
   }
+
+  update(path: string, params: any): Observable<any> {
+    const config = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    };
+
+    return this.http.put(this.getUrl(path), params, config);
+  }
+
   delete(path: string): Observable<Object> {
     console.log(this.getUrl(path));
     return this.http.delete(this.getUrl(path));
